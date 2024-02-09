@@ -18,7 +18,7 @@
 # @example
 #    class { 'remi':
 #      remi_safe_enabled  => 1,
-#      remi_php71_enabled => 1,
+#      remi_php81_enabled => 1,
 #    }
 #
 class remi (
@@ -30,7 +30,7 @@ class remi (
   $proxy_username                        = absent,
 
   $remi_baseurl                          = absent,
-  $remi_mirrorlist                       = "http://cdn.remirepo.net/enterprise/${::operatingsystemmajrelease}/remi/mirror",
+  $remi_mirrorlist                       = "http://cdn.remirepo.net/enterprise/${::operatingsystemmajrelease}/remi/\$basearch/mirror",
   $remi_enabled                          = 0,
   $remi_includepkgs                      = undef,
   $remi_exclude                          = undef,
@@ -113,29 +113,29 @@ class remi (
   $remi_php70_test_debuginfo_includepkgs = undef,
   $remi_php70_test_debuginfo_exclude     = undef,
 
-  $remi_php71_baseurl                    = absent,
-  $remi_php71_mirrorlist                 = "http://cdn.remirepo.net/enterprise/${::operatingsystemmajrelease}/php71/mirror",
-  $remi_php71_enabled                    = 0,
-  $remi_php71_includepkgs                = undef,
-  $remi_php71_exclude                    = undef,
+  $remi_php81_baseurl                    = absent,
+  $remi_php81_mirrorlist                 = "http://cdn.remirepo.net/enterprise/${::operatingsystemmajrelease}/php81/\$basearch/mirror",
+  $remi_php81_enabled                    = 0,
+  $remi_php81_includepkgs                = undef,
+  $remi_php81_exclude                    = undef,
 
-  $remi_php71_debuginfo_baseurl          = "http://rpms.remirepo.net/enterprise/${::operatingsystemmajrelease}/debug-php71/\$basearch/",
-  $remi_php71_debuginfo_mirrorlist       = absent,
-  $remi_php71_debuginfo_enabled          = 0,
-  $remi_php71_debuginfo_includepkgs      = undef,
-  $remi_php71_debuginfo_exclude          = undef,
+  $remi_php81_debuginfo_baseurl          = "http://rpms.remirepo.net/enterprise/${::operatingsystemmajrelease}/debug-php81/\$basearch/",
+  $remi_php81_debuginfo_mirrorlist       = absent,
+  $remi_php81_debuginfo_enabled          = 0,
+  $remi_php81_debuginfo_includepkgs      = undef,
+  $remi_php81_debuginfo_exclude          = undef,
 
-  $remi_php71_test_baseurl               = absent,
-  $remi_php71_test_mirrorlist            = "http://cdn.remirepo.net/enterprise/${::operatingsystemmajrelease}/test71/mirror",
-  $remi_php71_test_enabled               = 0,
-  $remi_php71_test_includepkgs           = undef,
-  $remi_php71_test_exclude               = undef,
+  $remi_php81_test_baseurl               = absent,
+  $remi_php81_test_mirrorlist            = "http://cdn.remirepo.net/enterprise/${::operatingsystemmajrelease}/test81/mirror",
+  $remi_php81_test_enabled               = 0,
+  $remi_php81_test_includepkgs           = undef,
+  $remi_php81_test_exclude               = undef,
 
-  $remi_php71_test_debuginfo_baseurl     = "http://rpms.remirepo.net/enterprise/${::operatingsystemmajrelease}/debug-test71/\$basearch/",
-  $remi_php71_test_debuginfo_mirrorlist  = absent,
-  $remi_php71_test_debuginfo_enabled     = 0,
-  $remi_php71_test_debuginfo_includepkgs = undef,
-  $remi_php71_test_debuginfo_exclude     = undef,
+  $remi_php81_test_debuginfo_baseurl     = "http://rpms.remirepo.net/enterprise/${::operatingsystemmajrelease}/debug-test81/\$basearch/",
+  $remi_php81_test_debuginfo_mirrorlist  = absent,
+  $remi_php81_test_debuginfo_enabled     = 0,
+  $remi_php81_test_debuginfo_includepkgs = undef,
+  $remi_php81_test_debuginfo_exclude     = undef,
 
   $remi_php72_baseurl                    = absent,
   $remi_php72_mirrorlist                 = "http://cdn.remirepo.net/enterprise/${::operatingsystemmajrelease}/php72/mirror",
@@ -317,37 +317,37 @@ class remi (
         includepkgs => $remi_php70_test_debuginfo_includepkgs,
         exclude     => $remi_php70_test_debuginfo_exclude;
 
-      'remi-php71':
-        descr       => "Remi's PHP 7.1 RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch",
-        baseurl     => $remi_php71_baseurl,
-        mirrorlist  => $remi_php71_mirrorlist,
-        enabled     => $remi_php71_enabled,
-        includepkgs => $remi_php71_includepkgs,
-        exclude     => $remi_php71_exclude;
+      'remi-php81':
+        descr       => "Remi's PHP 8.1 RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch",
+        baseurl     => $remi_php81_baseurl,
+        mirrorlist  => $remi_php81_mirrorlist,
+        enabled     => $remi_php81_enabled,
+        includepkgs => $remi_php81_includepkgs,
+        exclude     => $remi_php81_exclude;
 
-      'remi-php71-debuginfo':
-        descr       => "Remi's PHP 7.1 RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch - debuginfo",
-        baseurl     => $remi_php71_debuginfo_baseurl,
-        mirrorlist  => $remi_php71_debuginfo_mirrorlist,
-        enabled     => $remi_php71_debuginfo_enabled,
-        includepkgs => $remi_php71_debuginfo_includepkgs,
-        exclude     => $remi_php71_debuginfo_exclude;
+      'remi-php81-debuginfo':
+        descr       => "Remi's PHP 8.1 RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch - debuginfo",
+        baseurl     => $remi_php81_debuginfo_baseurl,
+        mirrorlist  => $remi_php81_debuginfo_mirrorlist,
+        enabled     => $remi_php81_debuginfo_enabled,
+        includepkgs => $remi_php81_debuginfo_includepkgs,
+        exclude     => $remi_php81_debuginfo_exclude;
 
-      'remi-php71-test':
-        descr       => "Remi's PHP 7.1 test RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch",
-        baseurl     => $remi_php71_test_baseurl,
-        mirrorlist  => $remi_php71_test_mirrorlist,
-        enabled     => $remi_php71_test_enabled,
-        includepkgs => $remi_php71_test_includepkgs,
-        exclude     => $remi_php71_test_exclude;
+      'remi-php81-test':
+        descr       => "Remi's PHP 8.1 test RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch",
+        baseurl     => $remi_php81_test_baseurl,
+        mirrorlist  => $remi_php81_test_mirrorlist,
+        enabled     => $remi_php81_test_enabled,
+        includepkgs => $remi_php81_test_includepkgs,
+        exclude     => $remi_php81_test_exclude;
 
-      'remi-php71-test-debuginfo':
-        descr       => "Remi's PHP 7.1 test RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch - debuginfo",
-        baseurl     => $remi_php71_test_debuginfo_baseurl,
-        mirrorlist  => $remi_php71_test_debuginfo_mirrorlist,
-        enabled     => $remi_php71_test_debuginfo_enabled,
-        includepkgs => $remi_php71_test_debuginfo_includepkgs,
-        exclude     => $remi_php71_test_debuginfo_exclude;
+      'remi-php81-test-debuginfo':
+        descr       => "Remi's PHP 8.1 test RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch - debuginfo",
+        baseurl     => $remi_php81_test_debuginfo_baseurl,
+        mirrorlist  => $remi_php81_test_debuginfo_mirrorlist,
+        enabled     => $remi_php81_test_debuginfo_enabled,
+        includepkgs => $remi_php81_test_debuginfo_includepkgs,
+        exclude     => $remi_php81_test_debuginfo_exclude;
 
       'remi-php72':
         descr       => "Remi's PHP 7.2 RPM repository for Enterprise Linux ${::operatingsystemmajrelease} - \$basearch",
